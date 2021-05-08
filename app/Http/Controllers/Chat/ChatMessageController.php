@@ -17,14 +17,14 @@ class ChatMessageController extends Controller
         return response()->json($messages, 200);
     }
 
-    // public function store(StoreMessageRequest $request)
-    // {
-    //     $message = $request->user()->messages()->create([
-    //         'body' => $request->body
-    //     ]);
+    public function store(StoreMessageRequest $request)
+    {
+        $message = $request->user()->messages()->create([
+            'body' => $request->body
+        ]);
 
-    //     broadcast(new MessageCreated($message))->toOthers();
+        broadcast(new MessageCreated($message))->toOthers();
 
-    //     return response()->json($message, 200);
-    // }
+        return response()->json($message, 200);
+    }
 }
